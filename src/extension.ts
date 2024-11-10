@@ -212,7 +212,10 @@ export function activate(context: vscode.ExtensionContext) {
         } else if (esp32) {
             tool = findTool(arduinoContext, "runtime.tools.mkspiffs.path");
         } else { // ESP8266
-            tool = findTool(arduinoContext, "runtime.tools.mkspiffs");
+            // use specific version instlled with ESP8266 package
+            // the mkspiffs.exe in ESP32 package doesnt compatible with EPS8266
+            // https://github.com/igrr/mkspiffs?tab=readme-ov-file#spiffs-configuration
+            tool = findTool(arduinoContext, "runtime.tools.mkspiffs-3");
         }
         if (tool) {
             mkspiffs = tool + "/" + mkspiffs;
